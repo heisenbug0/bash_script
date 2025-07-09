@@ -179,13 +179,6 @@ Each database directory contains:
 
 We welcome contributions! Please follow these guidelines:
 
-### Getting Started
-1. Fork the repository
-2. Create a new branch for your deployment script
-3. Follow the directory structure and documentation standards
-4. Test your scripts thoroughly
-5. Submit a pull request
-
 ### Script Standards
 Each script should:
 - **Error Handling**: Include comprehensive error handling with meaningful messages
@@ -197,6 +190,13 @@ Each script should:
 - **Cleanup**: Include cleanup procedures for failed deployments
 - **Configuration**: Support environment variables for configuration
 - **Cross-Platform**: Work across different operating systems where possible
+
+### Getting Started
+1. Fork the repository
+2. Create a new branch for your deployment script
+3. Follow the directory structure and documentation standards
+4. Test your scripts thoroughly
+5. Submit a pull request
 
 ### Documentation Standards
 - Each directory must have a README.md file
