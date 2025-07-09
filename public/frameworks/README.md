@@ -1,44 +1,70 @@
 # Framework Deployment Scripts
 
-This directory contains deployment scripts for various web frameworks and applications.
+Deploy popular web frameworks quickly and easily.
 
-## 📁 Directory Structure
+## Available Frameworks
 
+### Node.js
+Deploy Node.js applications with or without databases.
+- **Standalone apps** - Just Node.js, no database
+- **With PostgreSQL** - Full-stack Node.js + database
+- **Express APIs** - RESTful API servers
+- **Real-time apps** - WebSocket and Socket.io support
+
+### Python
+Deploy Python web applications.
+- **Django** - Full-featured web framework with admin
+- **Database integration** - PostgreSQL setup included
+- **Static files** - Automatic handling and serving
+- **Production ready** - Gunicorn + Nginx setup
+
+### React
+Deploy React applications as static sites.
+- **Create React App** - Standard React builds
+- **Vite projects** - Modern build tool support
+- **Static hosting** - Nginx with proper routing
+- **API integration** - Connect to backend APIs
+
+## Quick Examples
+
+### Node.js API
+```bash
+cd nodejs/
+export APP_NAME="my-api"
+export PORT="3000"
+sudo ./deploy.sh
 ```
-frameworks/
-├── nodejs/
-├── react/
-├── nextjs/
-├── vue/
-├── angular/
-├── python-django/
-├── ruby-rails/
-├── php-laravel/
-├── go/
-├── rust/
-├── java-spring/
-└── dotnet/
+
+### Django Website
+```bash
+cd python/django/
+export APP_NAME="my-site"
+export DOMAIN="mysite.com"
+sudo ./deploy.sh
 ```
 
-## 🎯 Usage
+### React App
+```bash
+cd react/
+export APP_NAME="my-react-app"
+sudo ./deploy.sh
+```
 
-1. Navigate to your framework's directory
-2. Read the specific README for setup instructions
-3. Run the appropriate deployment script
+## What You Get
 
-## 📋 Available Frameworks
+Every deployment includes:
+- Web server (Nginx)
+- SSL certificate (if domain provided)
+- Process management (PM2 or systemd)
+- Basic security (firewall rules)
+- Automatic restarts
+- Log management
 
-- **Node.js** - Express, Fastify, Koa applications
-- **React** - Create React App, Vite React applications
-- **Next.js** - Full-stack React applications
-- **Vue.js** - Vue 2/3 applications with Vite/CLI
-- **Angular** - Angular applications
-- **Python/Django** - Django web applications
-- **Ruby on Rails** - Rails applications
-- **PHP/Laravel** - Laravel applications
-- **Go** - Go web applications
-- **Rust** - Rust web applications
-- **Java/Spring** - Spring Boot applications
-- **.NET** - ASP.NET Core applications
+## Requirements
 
-Each framework directory contains scripts for different deployment scenarios and hosting platforms.
+- Linux server (Ubuntu/Debian/CentOS)
+- Root access
+- Your application code
+- Internet connection
+
+Each framework folder has detailed instructions and examples.

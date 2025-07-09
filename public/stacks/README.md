@@ -1,317 +1,173 @@
 # Full-Stack Deployment Scripts
 
-Complete deployment solutions for popular technology stacks and combinations.
+Deploy complete application stacks with all components configured together.
 
-## 📁 Directory Structure
+## Available Stacks
 
-```
-stacks/
-├── mean/               # MongoDB, Express, Angular, Node.js
-├── mern/               # MongoDB, Express, React, Node.js
-├── mevn/               # MongoDB, Express, Vue.js, Node.js
-├── lamp/               # Linux, Apache, MySQL, PHP
-├── lemp/               # Linux, Nginx, MySQL, PHP
-├── pern/               # PostgreSQL, Express, React, Node.js
-├── django-react/       # Django backend, React frontend
-├── rails-react/        # Ruby on Rails backend, React frontend
-├── laravel-vue/        # Laravel backend, Vue.js frontend
-├── spring-angular/     # Spring Boot backend, Angular frontend
-├── dotnet-react/       # .NET Core backend, React frontend
-├── jamstack/           # JAMstack deployments
-├── microservices/      # Microservices architectures
-└── serverless/         # Serverless full-stack applications
-```
+### MERN Stack
+**MongoDB + Express + React + Node.js**
+- Complete JavaScript stack
+- MongoDB for data storage
+- Express.js API backend
+- React frontend
+- Node.js runtime
 
-## 🎯 Stack Categories
+### MEAN Stack  
+**MongoDB + Express + Angular + Node.js**
+- Full-featured JavaScript stack
+- Angular frontend framework
+- TypeScript support
+- Enterprise-ready architecture
 
-### JavaScript Full-Stack
-- **MEAN**: MongoDB + Express + Angular + Node.js
-- **MERN**: MongoDB + Express + React + Node.js
-- **MEVN**: MongoDB + Express + Vue.js + Node.js
-- **PERN**: PostgreSQL + Express + React + Node.js
+### LAMP Stack
+**Linux + Apache + MySQL + PHP**
+- Classic web development stack
+- Apache web server
+- MySQL database
+- PHP server-side scripting
+- Perfect for WordPress, traditional web apps
 
-### Traditional Web Stacks
-- **LAMP**: Linux + Apache + MySQL + PHP
-- **LEMP**: Linux + Nginx + MySQL + PHP
+## Quick Deployments
 
-### Modern Full-Stack
-- **Django + React**: Python backend with React frontend
-- **Rails + React**: Ruby backend with React frontend
-- **Laravel + Vue**: PHP backend with Vue.js frontend
-- **Spring + Angular**: Java backend with Angular frontend
-
-### Cloud-Native Stacks
-- **JAMstack**: JavaScript + APIs + Markup
-- **Serverless**: Function-based architectures
-- **Microservices**: Distributed service architectures
-
-## 🚀 Quick Start Examples
-
-### Deploy MERN Stack
+### MERN Stack
 ```bash
 cd mern/
 export STACK_NAME="my-mern-app"
-export MONGO_DB="myapp"
 export DOMAIN="myapp.com"
 sudo ./deploy.sh
 ```
 
-### Deploy LAMP Stack
+### MEAN Stack
+```bash
+cd mean/
+export STACK_NAME="my-mean-app"
+export DOMAIN="myapp.com"
+sudo ./deploy.sh
+```
+
+### LAMP Stack
 ```bash
 cd lamp/
 export APP_NAME="my-website"
-export MYSQL_DB="website_db"
-export DOMAIN="website.com"
+export DOMAIN="mysite.com"
 sudo ./deploy.sh
 ```
 
-### Deploy Django + React
+## What You Need
+
+### MERN/MEAN Projects
+Your project should have:
+- `backend/` folder with Node.js API
+- `frontend/` folder with React/Angular app
+- `package.json` in both folders
+- Database connection configured
+
+### LAMP Projects
+Your project should have:
+- PHP files (or we'll create a sample)
+- Database requirements (optional)
+- Standard web structure
+
+## What Gets Set Up
+
+### MERN/MEAN Stacks
+- **MongoDB** database with authentication
+- **Node.js** backend with PM2 process management
+- **Frontend** built and served by Nginx
+- **API proxy** from frontend to backend
+- **SSL certificate** for your domain
+- **Firewall** and security rules
+
+### LAMP Stack
+- **Apache** web server
+- **MySQL** database with secure setup
+- **PHP** with common extensions
+- **Virtual host** configuration
+- **SSL certificate** for your domain
+- **Database user** and permissions
+
+## Project Structure
+
+### MERN/MEAN Expected Structure
+```
+your-project/
+├── backend/
+│   ├── package.json
+│   ├── server.js (or app.js)
+│   └── ... (your API code)
+└── frontend/
+    ├── package.json
+    ├── src/
+    └── ... (your React/Angular code)
+```
+
+### LAMP Structure
+```
+your-project/
+├── index.php
+├── config/
+├── includes/
+└── ... (your PHP files)
+```
+
+## After Deployment
+
+### MERN/MEAN
+- **Frontend**: Accessible at your domain
+- **API**: Available at `/api/` routes
+- **Database**: MongoDB running locally
+- **Logs**: PM2 logs for backend, Nginx logs for frontend
+
+### LAMP
+- **Website**: Accessible at your domain
+- **Database**: MySQL with created user
+- **Files**: Located in `/var/www/html/`
+- **Logs**: Apache logs in `/var/log/apache2/`
+
+## Management Commands
+
+### MERN/MEAN
 ```bash
-cd django-react/
-export PROJECT_NAME="my-project"
-export DB_ENGINE="postgresql"
-export FRONTEND_BUILD_DIR="frontend/build"
-sudo ./deploy.sh
+# Check backend status
+pm2 status
+
+# View backend logs
+pm2 logs your-app-backend
+
+# Restart backend
+pm2 restart your-app-backend
+
+# Check database
+mongo
 ```
 
-### Deploy JAMstack
+### LAMP
 ```bash
-cd jamstack/
-export SITE_NAME="my-jamstack-site"
-export API_PROVIDER="netlify-functions"
-export CMS="strapi"
-./deploy.sh
+# Check Apache status
+sudo systemctl status apache2
+
+# Check MySQL status
+sudo systemctl status mysql
+
+# Connect to database
+mysql -u your_user -p your_database
+
+# View logs
+sudo tail -f /var/log/apache2/error.log
 ```
 
-## 📋 Platform Support
+## Updating Your Stack
 
-### VPS Deployments
-- **Ubuntu**: 18.04, 20.04, 22.04
-- **Debian**: 9, 10, 11
-- **CentOS**: 7, 8
-- **RHEL**: 7, 8, 9
+### MERN/MEAN
+1. Update backend code
+2. Restart with `pm2 restart your-app-backend`
+3. Update frontend code
+4. Rebuild with `npm run build`
+5. Copy new build to `/var/www/your-app/`
 
-### Cloud Platforms
-- **AWS**: EC2, ECS, Lambda, Amplify
-- **Google Cloud**: Compute Engine, Cloud Run, App Engine
-- **Azure**: Virtual Machines, Container Instances, App Service
-- **DigitalOcean**: Droplets, App Platform
+### LAMP
+1. Update PHP files in `/var/www/html/`
+2. No restart needed (PHP is interpreted)
+3. Clear any caches if using frameworks
 
-### Hosting Platforms
-- **Vercel**: JAMstack and serverless
-- **Netlify**: Static sites and serverless functions
-- **Render**: Full-stack applications
-- **Railway**: Database-backed applications
-
-## 🔧 Configuration Examples
-
-### MERN Stack Configuration
-```bash
-# Application Configuration
-export STACK_NAME="my-mern-app"
-export NODE_VERSION="18"
-export REACT_BUILD_DIR="client/build"
-
-# Database Configuration
-export MONGO_DB="myapp"
-export MONGO_USER="appuser"
-export MONGO_PASSWORD="securepassword"
-
-# Server Configuration
-export API_PORT="5000"
-export CLIENT_PORT="3000"
-export DOMAIN="myapp.com"
-
-# SSL Configuration
-export SSL_EMAIL="admin@myapp.com"
-export FORCE_HTTPS="true"
-```
-
-### LAMP Stack Configuration
-```bash
-# Application Configuration
-export APP_NAME="my-website"
-export PHP_VERSION="8.1"
-export DOCUMENT_ROOT="/var/www/html"
-
-# Database Configuration
-export MYSQL_VERSION="8.0"
-export MYSQL_DB="website_db"
-export MYSQL_USER="webuser"
-export MYSQL_PASSWORD="securepassword"
-
-# Web Server Configuration
-export APACHE_VERSION="2.4"
-export DOMAIN="website.com"
-export SSL_EMAIL="admin@website.com"
-```
-
-### Django + React Configuration
-```bash
-# Backend Configuration
-export DJANGO_PROJECT="myproject"
-export PYTHON_VERSION="3.11"
-export DJANGO_SETTINGS="production"
-
-# Frontend Configuration
-export REACT_APP_DIR="frontend"
-export REACT_BUILD_DIR="frontend/build"
-export NODE_VERSION="18"
-
-# Database Configuration
-export DB_ENGINE="postgresql"
-export DB_NAME="myproject"
-export DB_USER="projectuser"
-export DB_PASSWORD="securepassword"
-```
-
-## 📝 Stack-Specific Features
-
-### MERN/MEAN/MEVN Stacks
-- ✅ MongoDB setup and configuration
-- ✅ Express.js API server
-- ✅ Frontend framework setup (React/Angular/Vue)
-- ✅ Node.js environment configuration
-- ✅ JWT authentication setup
-- ✅ API proxy configuration
-- ✅ Build process automation
-
-### LAMP/LEMP Stacks
-- ✅ Web server configuration (Apache/Nginx)
-- ✅ PHP installation and optimization
-- ✅ MySQL database setup
-- ✅ Virtual host configuration
-- ✅ SSL certificate setup
-- ✅ PHP-FPM optimization
-- ✅ Caching configuration
-
-### Modern Full-Stack
-- ✅ Backend API setup
-- ✅ Frontend build and deployment
-- ✅ Database integration
-- ✅ Authentication systems
-- ✅ API documentation
-- ✅ Testing setup
-- ✅ CI/CD pipeline configuration
-
-### JAMstack
-- ✅ Static site generation
-- ✅ Serverless function deployment
-- ✅ CDN configuration
-- ✅ CMS integration
-- ✅ Form handling
-- ✅ Authentication providers
-- ✅ Performance optimization
-
-## 🛠️ Development Workflow
-
-### Local Development
-```bash
-# Start development environment
-./dev-setup.sh
-
-# Run all services
-./dev-start.sh
-
-# Stop all services
-./dev-stop.sh
-```
-
-### Staging Deployment
-```bash
-# Deploy to staging
-export ENVIRONMENT="staging"
-./deploy.sh
-```
-
-### Production Deployment
-```bash
-# Deploy to production
-export ENVIRONMENT="production"
-./deploy.sh
-```
-
-## 📚 Architecture Examples
-
-### MERN Stack Architecture
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   React Client  │───▶│  Express API    │───▶│   MongoDB       │
-│   (Frontend)    │    │  (Backend)      │    │   (Database)    │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-```
-
-### Microservices Architecture
-```
-┌─────────────────┐    ┌─────────────────┐
-│   Frontend      │───▶│  API Gateway    │
-│   (React/Vue)   │    │  (Nginx/Kong)   │
-└─────────────────┘    └─────────────────┘
-                                │
-                ┌───────────────┼───────────────┐
-                │               │               │
-        ┌───────▼──────┐ ┌──────▼──────┐ ┌─────▼──────┐
-        │ Auth Service │ │ User Service│ │ Data Service│
-        │ (Node.js)    │ │ (Python)    │ │ (Go)        │
-        └──────────────┘ └─────────────┘ └────────────┘
-```
-
-### JAMstack Architecture
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Static Site   │───▶│      CDN        │───▶│  Serverless     │
-│   (Generated)   │    │   (CloudFront)  │    │  Functions      │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                                                       │
-                                               ┌───────▼──────┐
-                                               │   Database   │
-                                               │  (DynamoDB)  │
-                                               └──────────────┘
-```
-
-## 🔍 Monitoring and Maintenance
-
-### Health Checks
-- Application health endpoints
-- Database connectivity checks
-- Service dependency monitoring
-- Performance metrics collection
-
-### Logging
-- Centralized log aggregation
-- Error tracking and alerting
-- Performance monitoring
-- Security audit logs
-
-### Backup Strategies
-- Database backups
-- Application code backups
-- Configuration backups
-- Disaster recovery procedures
-
-## 🔒 Security Considerations
-
-### Authentication & Authorization
-- JWT token management
-- OAuth integration
-- Role-based access control
-- Session management
-
-### Data Protection
-- Database encryption
-- API security
-- Input validation
-- XSS/CSRF protection
-
-### Infrastructure Security
-- Firewall configuration
-- SSL/TLS certificates
-- Network segmentation
-- Security updates
-
-## 🔗 Related Documentation
-
-- [Framework Scripts](../frameworks/README.md)
-- [Database Scripts](../databases/README.md)
-- [Cloud Services](../cloud-services/README.md)
-- [Hosting Platforms](../hosting/README.md)
+Each stack folder has detailed setup instructions and troubleshooting guides.

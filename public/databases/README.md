@@ -1,84 +1,105 @@
-# Database Deployment Scripts
+# Database Setup Scripts
 
-Scripts for setting up and deploying various database systems across different platforms.
+Set up databases for your applications.
 
-## 📁 Directory Structure
+## Available Databases
 
-```
-databases/
-├── postgresql/
-├── mysql/
-├── mongodb/
-├── redis/
-├── elasticsearch/
-├── influxdb/
-├── cassandra/
-├── neo4j/
-├── sqlite/
-└── mariadb/
-```
+### PostgreSQL
+The most popular open-source relational database.
+- **Production ready** - Reliable and performant
+- **Full-text search** - Built-in search capabilities
+- **JSON support** - Store and query JSON data
+- **Extensions** - Rich ecosystem of add-ons
 
-## 🗄️ Supported Databases
+### Redis
+In-memory data store for caching and sessions.
+- **Blazing fast** - Sub-millisecond response times
+- **Versatile** - Cache, sessions, queues, pub/sub
+- **Persistent** - Optional data persistence
+- **Clustering** - Scale horizontally
 
-### Relational Databases
-- **PostgreSQL** - Advanced open-source relational database
-- **MySQL** - Popular open-source relational database
-- **MariaDB** - MySQL-compatible database server
-- **SQLite** - Lightweight embedded database
+## Quick Setup
 
-### NoSQL Databases
-- **MongoDB** - Document-oriented database
-- **Cassandra** - Wide-column store database
-- **Neo4j** - Graph database
-
-### In-Memory Databases
-- **Redis** - In-memory data structure store
-- **Memcached** - Distributed memory caching system
-
-### Search & Analytics
-- **Elasticsearch** - Search and analytics engine
-- **InfluxDB** - Time series database
-
-## 🚀 Quick Start
-
-1. Choose your database system
-2. Navigate to the database directory
-3. Read the database-specific README
-4. Run the setup script
-
+### PostgreSQL
 ```bash
-cd databases/postgresql
+cd postgresql/
+export DB_NAME="myapp"
+export DB_USER="appuser"
 sudo ./setup.sh
 ```
 
-## 📋 Deployment Options
+### Redis
+```bash
+cd redis/
+export REDIS_PASSWORD="securepassword"
+sudo ./setup.sh
+```
 
-Each database supports multiple deployment methods:
-- **Local Installation** - Direct server installation
-- **Docker Deployment** - Containerized deployment
-- **Cloud Deployment** - Managed cloud services
-- **Cluster Setup** - High-availability clusters
+## What Gets Configured
 
-## 🔧 Common Features
+### PostgreSQL
+- Latest stable version installed
+- Database and user created
+- Performance tuning applied
+- Backup scripts created
+- Security hardening
+- Connection pooling ready
 
-All database scripts include:
-- ✅ Automated installation
-- ✅ Security configuration
-- ✅ Performance optimization
-- ✅ Backup setup
-- ✅ Monitoring configuration
-- ✅ User management
-- ✅ SSL/TLS setup
-- ✅ Firewall configuration
+### Redis
+- Latest stable version installed
+- Password authentication
+- Memory optimization
+- Persistence configured
+- Security settings applied
+- Monitoring ready
 
-## 📝 Configuration
+## Integration
 
-Most scripts support environment variables:
+These databases work seamlessly with our framework scripts:
 
 ```bash
+# Node.js + PostgreSQL
+cd ../frameworks/nodejs/with-postgresql/
 export DB_NAME="myapp"
-export DB_USER="appuser"
-export DB_PASSWORD="securepassword"
-export DB_HOST="localhost"
-export DB_PORT="5432"
+sudo ./deploy.sh
+
+# Django automatically uses PostgreSQL
+cd ../frameworks/python/django/
+sudo ./deploy.sh
 ```
+
+## Management
+
+### PostgreSQL
+```bash
+# Connect to database
+psql -h localhost -U appuser -d myapp
+
+# Check status
+sudo systemctl status postgresql
+
+# View logs
+sudo tail -f /var/log/postgresql/postgresql-*.log
+```
+
+### Redis
+```bash
+# Connect to Redis
+redis-cli -a yourpassword
+
+# Check status
+sudo systemctl status redis
+
+# Monitor performance
+redis-cli --latency
+```
+
+## Backup & Recovery
+
+Both databases include automatic backup scripts:
+- **Daily backups** with retention policies
+- **Easy restore** procedures
+- **Monitoring** for backup success
+- **Compression** to save space
+
+Check each database folder for specific backup instructions.
