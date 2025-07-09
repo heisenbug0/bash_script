@@ -74,6 +74,15 @@ That's it! Your app will be live with SSL, monitoring, and automatic restarts.
 
 ## Examples
 
+### AWS Lambda Function
+```bash
+cd cloud-services/aws/lambda/
+export FUNCTION_NAME="my-api"
+export API_GATEWAY="true"
+./deploy.sh
+```
+Gets you: Serverless function with API endpoint, IAM role, and CloudWatch logs
+
 ### Simple Node.js API
 ```bash
 cd frameworks/nodejs/
