@@ -74,7 +74,6 @@ detect_os() {
 # Check if running as root
 check_root() {
     if [ "$(id -u)" -ne 0 ]; then
-        echo "This script must be run as root or with sudo privileges"
         return 1
     fi
     return 0
@@ -192,19 +191,6 @@ enable_service() {
     fi
 }
 
-# Disable service
-disable_service() {
-    local service="$1"
-    
-    if service_exists "$service"; then
-        systemctl disable "$service"
-        return $?
-    else
-        echo "Service $service does not exist"
-        return 1
-    fi
-}
-
 # Check if port is available
 port_available() {
     local port="$1"
@@ -240,22 +226,9 @@ command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
-# Download file with retry
-download_file() {
-    local url="$1"
-    local output="$2"
-    local retries="${3:-3}"
-    local counter=0
-    
-    while [ $counter -lt $retries ]; do
-        if curl -fsSL "$url" -o "$output"; then
-            return 0
-        fi
-        counter=$((counter + 1))
-        sleep 2
-    done
-    
-    return 1
+# Check if command exists (alias for compatibility)
+has_command() {
+    command_exists "$1"
 }
 
 # Create directory with proper permissions
@@ -283,30 +256,9 @@ backup_file() {
     return 1
 }
 
-# Get system memory in MB
-get_system_memory() {
-    grep MemTotal /proc/meminfo | awk '{print int($2/1024)}'
-}
-
-# Get system CPU cores
-get_cpu_cores() {
-    nproc
-}
-
-# Check if running in container
-is_container() {
-    [ -f /.dockerenv ] || grep -q 'container=docker' /proc/1/environ 2>/dev/null
-}
-
 # Get public IP address
 get_public_ip() {
     curl -s ifconfig.me || curl -s ipinfo.io/ip || curl -s icanhazip.com
-}
-
-# Validate IP address
-validate_ip() {
-    local ip="$1"
-    echo "$ip" | grep -qE '^([0-9]{1,3}\.){3}[0-9]{1,3}$'
 }
 
 # Validate domain name
@@ -315,65 +267,8 @@ validate_domain() {
     echo "$domain" | grep -qE '^[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?)*$'
 }
 
-# Check if running on cloud provider
-detect_cloud_provider() {
-    if curl -s --max-time 2 http://169.254.169.254/latest/meta-data/ >/dev/null 2>&1; then
-        echo "aws"
-    elif curl -s --max-time 2 -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/ >/dev/null 2>&1; then
-        echo "gcp"
-    elif curl -s --max-time 2 -H "Metadata: true" http://169.254.169.254/metadata/instance >/dev/null 2>&1; then
-        echo "azure"
-    elif curl -s --max-time 2 http://169.254.169.254/metadata/v1/ >/dev/null 2>&1; then
-        echo "digitalocean"
-    else
-        echo "unknown"
-    fi
-}
-
-# Setup timezone
-setup_timezone() {
-    local timezone="${1:-UTC}"
-    
-    if [ -f "/usr/share/zoneinfo/$timezone" ]; then
-        ln -sf "/usr/share/zoneinfo/$timezone" /etc/localtime
-        echo "$timezone" > /etc/timezone
-        return 0
-    else
-        echo "Invalid timezone: $timezone"
-        return 1
-    fi
-}
-
-# Setup locale
-setup_locale() {
-    local locale="${1:-en_US.UTF-8}"
-    
-    case "$OS_ID" in
-        ubuntu|debian)
-            locale-gen "$locale"
-            update-locale LANG="$locale"
-            ;;
-        centos|rhel|fedora|rocky|almalinux)
-            localectl set-locale LANG="$locale"
-            ;;
-    esac
-}
-
-# Cleanup function
-cleanup() {
-    local temp_files=("$@")
-    
-    for file in "${temp_files[@]}"; do
-        if [ -f "$file" ] || [ -d "$file" ]; then
-            rm -rf "$file"
-        fi
-    done
-}
-
 # Export all functions
 export -f detect_os check_root user_exists create_user install_package update_system
-export -f service_exists start_service stop_service enable_service disable_service
-export -f port_available wait_for_service generate_password command_exists download_file
-export -f create_directory backup_file get_system_memory get_cpu_cores is_container
-export -f get_public_ip validate_ip validate_domain detect_cloud_provider
-export -f setup_timezone setup_locale cleanup
+export -f service_exists start_service stop_service enable_service
+export -f port_available wait_for_service generate_password command_exists has_command
+export -f create_directory backup_file get_public_ip validate_domain
