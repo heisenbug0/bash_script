@@ -12,22 +12,7 @@ Deploy complete application stacks with all components configured together.
 - React frontend
 - Node.js runtime
 
-### MEAN Stack  
-**MongoDB + Express + Angular + Node.js**
-- Full-featured JavaScript stack
-- Angular frontend framework
-- TypeScript support
-- Enterprise-ready architecture
-
-### LAMP Stack
-**Linux + Apache + MySQL + PHP**
-- Classic web development stack
-- Apache web server
-- MySQL database
-- PHP server-side scripting
-- Perfect for WordPress, traditional web apps
-
-## Quick Deployments
+## Quick Deployment
 
 ### MERN Stack
 ```bash
@@ -37,58 +22,28 @@ export DOMAIN="myapp.com"
 sudo ./deploy.sh
 ```
 
-### MEAN Stack
-```bash
-cd mean/
-export STACK_NAME="my-mean-app"
-export DOMAIN="myapp.com"
-sudo ./deploy.sh
-```
-
-### LAMP Stack
-```bash
-cd lamp/
-export APP_NAME="my-website"
-export DOMAIN="mysite.com"
-sudo ./deploy.sh
-```
-
 ## What You Need
 
-### MERN/MEAN Projects
+### MERN Projects
 Your project should have:
 - `backend/` folder with Node.js API
-- `frontend/` folder with React/Angular app
+- `frontend/` folder with React app
 - `package.json` in both folders
-- Database connection configured
-
-### LAMP Projects
-Your project should have:
-- PHP files (or we'll create a sample)
-- Database requirements (optional)
-- Standard web structure
+- MongoDB connection configured
 
 ## What Gets Set Up
 
-### MERN/MEAN Stacks
+### MERN Stack
 - **MongoDB** database with authentication
 - **Node.js** backend with PM2 process management
-- **Frontend** built and served by Nginx
+- **React frontend** built and served by Nginx
 - **API proxy** from frontend to backend
 - **SSL certificate** for your domain
 - **Firewall** and security rules
 
-### LAMP Stack
-- **Apache** web server
-- **MySQL** database with secure setup
-- **PHP** with common extensions
-- **Virtual host** configuration
-- **SSL certificate** for your domain
-- **Database user** and permissions
-
 ## Project Structure
 
-### MERN/MEAN Expected Structure
+### MERN Expected Structure
 ```
 your-project/
 ├── backend/
@@ -98,35 +53,20 @@ your-project/
 └── frontend/
     ├── package.json
     ├── src/
-    └── ... (your React/Angular code)
-```
-
-### LAMP Structure
-```
-your-project/
-├── index.php
-├── config/
-├── includes/
-└── ... (your PHP files)
+    └── ... (your React code)
 ```
 
 ## After Deployment
 
-### MERN/MEAN
+### MERN
 - **Frontend**: Accessible at your domain
 - **API**: Available at `/api/` routes
 - **Database**: MongoDB running locally
 - **Logs**: PM2 logs for backend, Nginx logs for frontend
 
-### LAMP
-- **Website**: Accessible at your domain
-- **Database**: MySQL with created user
-- **Files**: Located in `/var/www/html/`
-- **Logs**: Apache logs in `/var/log/apache2/`
-
 ## Management Commands
 
-### MERN/MEAN
+### MERN
 ```bash
 # Check backend status
 pm2 status
@@ -141,33 +81,20 @@ pm2 restart your-app-backend
 mongo
 ```
 
-### LAMP
-```bash
-# Check Apache status
-sudo systemctl status apache2
-
-# Check MySQL status
-sudo systemctl status mysql
-
-# Connect to database
-mysql -u your_user -p your_database
-
-# View logs
-sudo tail -f /var/log/apache2/error.log
-```
-
 ## Updating Your Stack
 
-### MERN/MEAN
+### MERN
 1. Update backend code
 2. Restart with `pm2 restart your-app-backend`
 3. Update frontend code
 4. Rebuild with `npm run build`
 5. Copy new build to `/var/www/your-app/`
 
-### LAMP
-1. Update PHP files in `/var/www/html/`
-2. No restart needed (PHP is interpreted)
-3. Clear any caches if using frameworks
+## Coming Soon
 
-Each stack folder has detailed setup instructions and troubleshooting guides.
+We're working on:
+- **MEAN Stack** (MongoDB + Express + Angular + Node.js)
+- **LAMP Stack** (Linux + Apache + MySQL + PHP)
+- **JAMstack** (JavaScript + APIs + Markup)
+
+The MERN stack folder has detailed setup instructions and troubleshooting guides.

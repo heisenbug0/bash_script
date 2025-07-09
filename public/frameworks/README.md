@@ -2,51 +2,39 @@
 
 Deploy popular web frameworks quickly and easily.
 
-## Available Frameworks
+## What's Available
 
 ### Node.js
-Deploy Node.js applications with or without databases.
-- **Standalone apps** - Just Node.js, no database
-- **With PostgreSQL** - Full-stack Node.js + database
-- **Express APIs** - RESTful API servers
-- **Real-time apps** - WebSocket and Socket.io support
+Deploy Node.js applications with PostgreSQL database.
+- **With PostgreSQL** - Complete Node.js + database setup
+- **Production ready** - PM2, Nginx, SSL included
 
-### Python
-Deploy Python web applications.
-- **Django** - Full-featured web framework with admin
-- **Database integration** - PostgreSQL setup included
-- **Static files** - Automatic handling and serving
-- **Production ready** - Gunicorn + Nginx setup
+### Python  
+Deploy Django applications (coming soon).
+- **Django setup** - In development
+- **Database included** - PostgreSQL integration
 
 ### React
 Deploy React applications as static sites.
-- **Create React App** - Standard React builds
-- **Vite projects** - Modern build tool support
-- **Static hosting** - Nginx with proper routing
-- **API integration** - Connect to backend APIs
+- **Static hosting** - Built and served by Nginx
+- **SSL included** - Free certificates with domain
 
 ## Quick Examples
 
-### Node.js API
+### Node.js + PostgreSQL
 ```bash
-cd nodejs/
+cd nodejs/with-postgresql/
 export APP_NAME="my-api"
-export PORT="3000"
+export DB_NAME="myapp"
+export DOMAIN="myapi.com"
 sudo ./deploy.sh
 ```
 
-### Django Website
-```bash
-cd python/django/
-export APP_NAME="my-site"
-export DOMAIN="mysite.com"
-sudo ./deploy.sh
-```
-
-### React App
+### React Static Site
 ```bash
 cd react/
 export APP_NAME="my-react-app"
+export DOMAIN="myapp.com"
 sudo ./deploy.sh
 ```
 
@@ -67,4 +55,4 @@ Every deployment includes:
 - Your application code
 - Internet connection
 
-Each framework folder has detailed instructions and examples.
+Each framework folder has detailed instructions.

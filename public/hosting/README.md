@@ -13,20 +13,12 @@ Perfect for static sites and JAMstack apps.
 - Form handling
 
 ### Vercel  
-Great for Next.js, React, and frontend apps.
+Great for React and frontend apps.
 - Zero-config deployments
 - Preview deployments
 - Edge functions
 - Built-in analytics
 - Custom domains
-
-### Render
-Full-stack hosting with databases.
-- Web services
-- PostgreSQL databases
-- Redis instances
-- Background workers
-- Auto-deploy from Git
 
 ## Quick Deployments
 
@@ -44,14 +36,6 @@ export PROJECT_NAME="my-react-app"
 ./deploy.sh
 ```
 
-### Full-Stack to Render
-```bash
-cd render/
-export PROJECT_NAME="my-app"
-export DATABASE_TYPE="postgresql"
-./deploy.sh
-```
-
 ## What You Need
 
 ### For Static Sites
@@ -62,11 +46,6 @@ export DATABASE_TYPE="postgresql"
 - package.json with build script
 - Modern Node.js project structure
 
-### For Full-Stack Apps
-- Backend code (Node.js, Python, etc.)
-- Database requirements
-- Environment variables
-
 ## Platform Features
 
 ### Netlify
@@ -76,16 +55,10 @@ export DATABASE_TYPE="postgresql"
 - **Extras**: Forms, identity, analytics
 
 ### Vercel
-- **Best for**: Next.js, React, frontend apps
+- **Best for**: React, frontend apps
 - **Supports**: All frontend frameworks
 - **Free tier**: 100GB bandwidth, unlimited projects
 - **Extras**: Edge functions, image optimization
-
-### Render
-- **Best for**: Full-stack apps, APIs, databases
-- **Supports**: Node.js, Python, Ruby, Go, Docker
-- **Free tier**: 750 hours, PostgreSQL database
-- **Extras**: Background jobs, cron jobs
 
 ## Configuration
 
@@ -102,7 +75,6 @@ export DOMAIN="myapp.com"
 
 # Environment variables
 export API_URL="https://api.myapp.com"
-export DATABASE_URL="postgresql://..."
 ```
 
 ## Deployment Process
@@ -111,7 +83,7 @@ export DATABASE_URL="postgresql://..."
 2. **Choose platform** - Based on your app type
 3. **Run deployment script** - Handles everything automatically
 4. **Configure domain** - If you have a custom domain
-5. **Set environment variables** - For API keys, database URLs, etc.
+5. **Set environment variables** - For API keys, etc.
 
 ## After Deployment
 
@@ -125,35 +97,14 @@ export DATABASE_URL="postgresql://..."
 - Manage at: `https://vercel.com/dashboard`
 - Preview deployments for branches
 
-### Render
-- Service available at: `https://service-name.onrender.com`
-- Manage at: `https://dashboard.render.com`
-- Logs and metrics included
-
 ## Custom Domains
 
-All platforms support custom domains:
+Both platforms support custom domains:
 
 1. **Add domain** in platform dashboard
 2. **Update DNS** to point to platform
 3. **SSL certificate** automatically provisioned
 4. **HTTPS redirect** enabled by default
-
-## Environment Variables
-
-Set these in the platform dashboard:
-
-```bash
-# API endpoints
-API_URL=https://api.example.com
-
-# Database connections  
-DATABASE_URL=postgresql://user:pass@host/db
-
-# Third-party services
-STRIPE_SECRET_KEY=sk_...
-SENDGRID_API_KEY=SG...
-```
 
 ## Troubleshooting
 
@@ -167,26 +118,18 @@ SENDGRID_API_KEY=SG...
 - Verify routing configuration for SPAs
 - Check browser console for errors
 
-**API not working?**
-- Verify environment variables are set
-- Check API endpoint URLs
-- Review function/service logs
-
 ## Platform Comparison
 
-| Feature | Netlify | Vercel | Render |
-|---------|---------|--------|--------|
-| Static Sites | ✅ Excellent | ✅ Excellent | ✅ Good |
-| Frontend Apps | ✅ Great | ✅ Excellent | ✅ Good |
-| Backend APIs | ⚠️ Functions only | ⚠️ Functions only | ✅ Full support |
-| Databases | ❌ No | ❌ No | ✅ PostgreSQL |
-| Free Tier | ✅ Generous | ✅ Generous | ✅ Limited |
-| Custom Domains | ✅ Yes | ✅ Yes | ✅ Yes |
+| Feature | Netlify | Vercel |
+|---------|---------|--------|
+| Static Sites | ✅ Excellent | ✅ Excellent |
+| Frontend Apps | ✅ Great | ✅ Excellent |
+| Free Tier | ✅ Generous | ✅ Generous |
+| Custom Domains | ✅ Yes | ✅ Yes |
 
 Choose based on your project needs:
-- **Static/JAMstack**: Netlify or Vercel
-- **Frontend apps**: Vercel (especially Next.js)
-- **Full-stack apps**: Render
-- **Simple sites**: Any platform works
+- **Static/JAMstack**: Netlify
+- **React/Next.js**: Vercel
+- **Simple sites**: Either works great
 
 Each platform folder has specific deployment guides and examples.
